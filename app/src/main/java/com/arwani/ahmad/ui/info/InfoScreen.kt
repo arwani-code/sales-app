@@ -98,7 +98,7 @@ fun ProductItem(
         shape = CircleShape.copy(CornerSize(10.dp)),
         onClick = {
             navController.currentBackStackEntry?.savedStateHandle?.set(
-                key = "posts",
+                key = "product",
                 value = product
             )
             navController.navigate(Screen.Detail.route)

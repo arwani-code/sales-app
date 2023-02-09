@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.arwani.ahmad.data.local.ProductEntity
 import com.arwani.ahmad.ui.add.AddScreen
 import com.arwani.ahmad.ui.components.BottomBar
 import com.arwani.ahmad.ui.detail.DetailScreen
@@ -31,7 +32,7 @@ fun JetSalesApp(
 
     Scaffold(
         bottomBar = {
-            if (currentRoute != Screen.Login.route && currentRoute != Screen.Info.route) {
+            if (currentRoute == Screen.Home.route || currentRoute == Screen.Status.route) {
                 BottomBar(navController = navController)
             }
         }
@@ -54,9 +55,11 @@ fun JetSalesApp(
                 InfoScreen(navController = navController)
             }
             composable(route = Screen.Detail.route) {
-                DetailScreen()
+                val product =
+                    navController.previousBackStackEntry?.savedStateHandle?.get<ProductEntity>("product")
+                product?.let { it1 -> DetailScreen(productEntity = it1) }
             }
-            composable(route = Screen.Add.route){
+            composable(route = Screen.Add.route) {
                 AddScreen()
             }
         }
