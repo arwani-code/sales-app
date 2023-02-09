@@ -12,7 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.arwani.ahmad.ui.add.AddScreen
 import com.arwani.ahmad.ui.components.BottomBar
+import com.arwani.ahmad.ui.detail.DetailScreen
 import com.arwani.ahmad.ui.home.HomeScreen
 import com.arwani.ahmad.ui.info.InfoScreen
 import com.arwani.ahmad.ui.login.LoginScreen
@@ -29,7 +31,7 @@ fun JetSalesApp(
 
     Scaffold(
         bottomBar = {
-            if (currentRoute != Screen.Login.route && currentRoute != Screen.Info.route){
+            if (currentRoute != Screen.Login.route && currentRoute != Screen.Info.route) {
                 BottomBar(navController = navController)
             }
         }
@@ -39,17 +41,23 @@ fun JetSalesApp(
             startDestination = Screen.Home.route,
             modifier = modifier.padding(it)
         ) {
-            composable(route = Screen.Login.route){
+            composable(route = Screen.Login.route) {
                 LoginScreen(navController = navController)
             }
-            composable(route = Screen.Home.route){
+            composable(route = Screen.Home.route) {
                 HomeScreen(navController = navController)
             }
-            composable(route = Screen.Status.route){
+            composable(route = Screen.Status.route) {
                 StatusScreen()
             }
-            composable(route = Screen.Info.route){
-                InfoScreen()
+            composable(route = Screen.Info.route) {
+                InfoScreen(navController = navController)
+            }
+            composable(route = Screen.Detail.route) {
+                DetailScreen()
+            }
+            composable(route = Screen.Add.route){
+                AddScreen()
             }
         }
     }
