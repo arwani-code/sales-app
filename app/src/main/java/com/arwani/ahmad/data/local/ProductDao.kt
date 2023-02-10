@@ -17,4 +17,7 @@ interface ProductDao {
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertProduct(product: ProductEntity)
+
+    @Query("UPDATE products SET qty_opname = :qty WHERE id = :id")
+    suspend fun updateQty(id: Int, qty: String)
 }

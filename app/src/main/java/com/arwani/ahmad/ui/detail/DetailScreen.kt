@@ -1,14 +1,12 @@
 package com.arwani.ahmad.ui.detail
 
+import android.content.Intent
 import android.util.Log
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.Divider
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -26,11 +24,15 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.arwani.ahmad.MainCamera
 import com.arwani.ahmad.data.local.ProductEntity
 import com.arwani.ahmad.ui.components.TopBar
 
 @Composable
 fun DetailScreen(productEntity: ProductEntity, detailViewModel: DetailViewModel = hiltViewModel()) {
+
+    val context = LocalContext.current
+
     Scaffold(topBar = {
         TopBar(canNavigate = false, title = "Detail")
     }) { inner ->
@@ -52,6 +54,14 @@ fun DetailScreen(productEntity: ProductEntity, detailViewModel: DetailViewModel 
                         keyboardType = KeyboardType.Number
                     ),
                 )
+                Button(onClick = {
+                    if (detailViewModel.inputUser.isNotEmpty()) {
+                        detailViewModel.updateQtyOpname(productEntity.id, detailViewModel.inputUser)
+                        context.startActivity(Intent(context, MainCamera::class.java))
+                    }
+                }) {
+                    Text(text = "Submit")
+                }
             }
         }
     }

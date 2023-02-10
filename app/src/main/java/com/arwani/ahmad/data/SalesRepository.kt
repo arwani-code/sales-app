@@ -14,4 +14,6 @@ class SalesRepository @Inject constructor(private val productDao: ProductDao) {
 
     suspend fun insertAllProducts(productEntity: List<ProductEntity>) =
         productDao.insertAllProduct(productEntity)
+
+    suspend fun updateQty(id: Int, qty: String) = productDao.updateQty(id, qty)
 }
