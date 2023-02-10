@@ -20,4 +20,10 @@ interface ProductDao {
 
     @Query("UPDATE products SET qty_opname = :qty WHERE id = :id")
     suspend fun updateQty(id: Int, qty: String)
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertLocation(currentEntity: CurrentEntity)
+
+    @Query("SELECT * FROM current")
+    fun getLocations(): Flow<List<CurrentEntity>>
 }

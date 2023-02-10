@@ -38,10 +38,12 @@ fun HomeScreen(
             verticalArrangement = Arrangement.Center
         ) {
             Button(onClick = { navController.navigate(Screen.Info.route) }) {
-                Text(text = "Check In")
+                Text(text = "Product Customer")
             }
             Spacer(modifier = modifier.height(16.dp))
-            Button(onClick = { navController.navigate(Screen.Login.route) }) {
+            Button(onClick = {
+                navController.navigate(Screen.Login.route)
+            }) {
                 Text(text = "Check Out")
             }
 

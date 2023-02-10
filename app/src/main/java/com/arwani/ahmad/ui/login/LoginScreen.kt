@@ -17,7 +17,8 @@ import com.arwani.ahmad.ui.navigation.Screen
 
 @Composable
 fun LoginScreen(
-    navController: NavController
+    navController: NavController,
+    onLocation: () -> Unit
 ){
     val context = LocalContext.current
     Column(
@@ -60,6 +61,7 @@ fun LoginScreen(
                 }else if (password.isEmpty()){
                     Toast.makeText(context, "Please Enter Password", Toast.LENGTH_SHORT).show()
                 }else{
+                    onLocation()
                     navController.navigate(Screen.Home.route)
                 }
             },

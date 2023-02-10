@@ -1,5 +1,6 @@
 package com.arwani.ahmad.data
 
+import com.arwani.ahmad.data.local.CurrentEntity
 import com.arwani.ahmad.data.local.ProductDao
 import com.arwani.ahmad.data.local.ProductEntity
 import kotlinx.coroutines.flow.Flow
@@ -16,4 +17,9 @@ class SalesRepository @Inject constructor(private val productDao: ProductDao) {
         productDao.insertAllProduct(productEntity)
 
     suspend fun updateQty(id: Int, qty: String) = productDao.updateQty(id, qty)
+
+    suspend fun insertLocation(currentEntity: CurrentEntity) =
+        productDao.insertLocation(currentEntity)
+
+    fun getLocation(): Flow<List<CurrentEntity>> = productDao.getLocations()
 }

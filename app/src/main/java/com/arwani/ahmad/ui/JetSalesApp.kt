@@ -24,7 +24,8 @@ import com.arwani.ahmad.ui.status.StatusScreen
 @Composable
 fun JetSalesApp(
     navController: NavHostController = rememberNavController(),
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onLocation: () -> Unit
 ) {
 
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -39,11 +40,11 @@ fun JetSalesApp(
     ) {
         NavHost(
             navController = navController,
-            startDestination = Screen.Home.route,
+            startDestination = Screen.Login.route,
             modifier = modifier.padding(it)
         ) {
             composable(route = Screen.Login.route) {
-                LoginScreen(navController = navController)
+                LoginScreen(navController = navController, onLocation = { onLocation() })
             }
             composable(route = Screen.Home.route) {
                 HomeScreen(navController = navController)
@@ -57,7 +58,12 @@ fun JetSalesApp(
             composable(route = Screen.Detail.route) {
                 val product =
                     navController.previousBackStackEntry?.savedStateHandle?.get<ProductEntity>("product")
-                product?.let { it1 -> DetailScreen(productEntity = it1, navHostController = navController) }
+                product?.let { it1 ->
+                    DetailScreen(
+                        productEntity = it1,
+                        navHostController = navController
+                    )
+                }
             }
             composable(route = Screen.Add.route) {
                 AddScreen(navHostController = navController)
