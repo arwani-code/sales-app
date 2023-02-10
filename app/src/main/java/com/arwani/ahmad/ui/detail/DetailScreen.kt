@@ -24,12 +24,13 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import com.arwani.ahmad.MainCamera
 import com.arwani.ahmad.data.local.ProductEntity
 import com.arwani.ahmad.ui.components.TopBar
 
 @Composable
-fun DetailScreen(productEntity: ProductEntity, detailViewModel: DetailViewModel = hiltViewModel()) {
+fun DetailScreen(productEntity: ProductEntity, navHostController: NavHostController ,detailViewModel: DetailViewModel = hiltViewModel()) {
 
     val context = LocalContext.current
 

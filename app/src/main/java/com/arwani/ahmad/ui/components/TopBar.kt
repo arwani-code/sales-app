@@ -33,6 +33,7 @@ fun TopBar(
                         Icon(
                             imageVector = Icons.Default.ArrowBack,
                             contentDescription = "",
+                            tint = Color.White
                         )
                     }
                 }

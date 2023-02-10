@@ -57,10 +57,10 @@ fun JetSalesApp(
             composable(route = Screen.Detail.route) {
                 val product =
                     navController.previousBackStackEntry?.savedStateHandle?.get<ProductEntity>("product")
-                product?.let { it1 -> DetailScreen(productEntity = it1) }
+                product?.let { it1 -> DetailScreen(productEntity = it1, navHostController = navController) }
             }
             composable(route = Screen.Add.route) {
-                AddScreen()
+                AddScreen(navHostController = navController)
             }
         }
     }

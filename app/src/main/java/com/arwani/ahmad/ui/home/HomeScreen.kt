@@ -1,9 +1,6 @@
 package com.arwani.ahmad.ui.home
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
@@ -14,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.arwani.ahmad.ui.components.TopBar
@@ -41,6 +39,10 @@ fun HomeScreen(
         ) {
             Button(onClick = { navController.navigate(Screen.Info.route) }) {
                 Text(text = "Check In")
+            }
+            Spacer(modifier = modifier.height(16.dp))
+            Button(onClick = { navController.navigate(Screen.Login.route) }) {
+                Text(text = "Check Out")
             }
 
         }
